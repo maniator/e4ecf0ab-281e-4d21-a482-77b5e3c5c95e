@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import * as selectors from '../store/selectors';
 import * as actions from '../store/actions';
 
+import StyledPersonForm from "./styledComponents/PersonForm"
+
 class PersonForm extends React.Component {
   render() {
     const { person } = this.props;
 
     console.log('ACTIVE PERSON', person);
 
-    return <div className="form">Form to edit person here</div>;
+    return <StyledPersonForm className="form">Form to edit person here</StyledPersonForm>;
   }
 }
 

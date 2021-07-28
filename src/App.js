@@ -8,19 +8,17 @@ import Instructions from './components/Instructions';
 
 import PeopleList from './components/PeopleList';
 import PersonForm from './components/PersonForm';
+import StyledApp from "./components/styledComponents/App"
 
 import './styles.css';
 
 class App extends React.PureComponent {
   render() {
     return (
-      <div>
-        <Instructions />
-        <div className="app">
+        <StyledApp>
           <PeopleList />
           <PersonForm key={this.props.activeId || 'BLANK'} />
-        </div>
-      </div>
+        </StyledApp>
     );
   }
 }

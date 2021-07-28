@@ -7,6 +7,8 @@ import Select from 'react-select';
 import * as selectors from '../store/selectors';
 import * as actions from '../store/actions';
 
+import StyledPeopleList from "./styledComponents/PeopleList"
+
 // Options for select
 const FRUITS = ['ALL', 'banana', 'strawberry', 'apple'];
 
@@ -16,7 +18,7 @@ class PeopleList extends React.Component {
 
     console.log('PEOPLE', people);
 
-    return <div className="list">Put filter + list of people here</div>;
+    return <StyledPeopleList className="list">Put filter + list of people here</StyledPeopleList>;
   }
 }
 
