@@ -42,7 +42,8 @@ const PersonForm = () => {
                     type="select"
                 >{
                     FRUITS.map(fruit => (
-                        <option 
+                        <option
+                            key={fruit}
                             value={fruit} 
                         >{fruit}</option>
                     ))
