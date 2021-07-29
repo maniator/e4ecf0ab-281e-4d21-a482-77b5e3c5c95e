@@ -29,7 +29,8 @@ function addReducer(state = initialState, { type, payload }) {
       const activeId = state.activeId;
       const data = payload.data;
 
-      // Save data for active person
+      console.log("PERSON SAVING", data)
+      state.people.set(activeId, data);
 
       return state;
     }

@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import StyledPeopleList from "./styledComponents/PeopleList"
 import Person from "./Person";
 import {useSelectors, useState} from "./State";
 
-// Options for select
-const FRUITS = ['ALL', 'banana', 'strawberry', 'apple'];
-
 const PeopleList = () => {
-  const state = useState();
+  const { people: persons, activeId} = useState();
   const { selectFilteredPeople } = useSelectors();
+  const [people, setPeople] = React.useState([]);
 
-  const people = selectFilteredPeople(state);
+  useEffect(() => {
+    setPeople(selectFilteredPeople({ people: persons, activeId}))
+  }, [persons, activeId])
 
   /*
    TODO: not ideal to load thousands of dom elements at once
