@@ -16,6 +16,7 @@ const PeopleList = () => {
   }, [persons, activeId])
 
 
+  // TODO: my comp froze for 5 mins...
   const runFilter = () => {}
   /*
    TODO: not ideal to load thousands of dom elements at once
