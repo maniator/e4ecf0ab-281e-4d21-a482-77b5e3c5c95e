@@ -12,7 +12,6 @@ const PersonForm = () => {
 
     useEffect(() => {
         setPerson(selectActivePerson(state));
-        setPerson(selectActivePerson(state));
     }, [state]);
 
     if (!person) {
@@ -21,6 +20,7 @@ const PersonForm = () => {
 
     return (
         <StyledPersonForm className="form" key={person.id}>
+            <p>Change to a different person to save</p>
             <form
                 onSubmit={(e) => e.preventDefault()}
             >
