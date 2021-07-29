@@ -5,6 +5,7 @@ import PersonForm from "./PersonForm";
 const App = styled.div`
   display: grid;
   width: 70vw;
+  position: relative;
   margin: 25vh auto;
   min-height: 50vh;
   max-height: 50vh;
@@ -19,6 +20,10 @@ const App = styled.div`
     border-right: 1px solid rgba(71, 71, 116, 0.6);
   }
   ${PersonForm} {}
+  
+  * {
+    box-sizing: border-box;
+  }
 `;
 
 export default App;

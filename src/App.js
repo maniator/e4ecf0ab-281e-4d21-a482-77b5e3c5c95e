@@ -1,32 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
-import * as selectors from './store/selectors';
-
-// Delete Instructions when ready to code
-import Instructions from './components/Instructions';
 
 import PeopleList from './components/PeopleList';
 import PersonForm from './components/PersonForm';
 import StyledApp from "./components/styledComponents/App"
 
 import './styles.css';
+import {StateProvider} from "./components/State";
+import {initialState} from "./store/reducers";
 
-class App extends React.PureComponent {
-  render() {
-    return (
+const App = () => (
+    <StateProvider initialState={initialState}>
         <StyledApp>
-          <PeopleList />
-          <PersonForm key={this.props.activeId || 'BLANK'} />
+            <PeopleList />
+            <PersonForm />
         </StyledApp>
-    );
-  }
-}
+    </StateProvider>
+)
 
-export const mapStateToProps = state => {
-  return {
-    activeId: selectors.selectActiveId(state),
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

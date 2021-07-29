@@ -1,32 +1,25 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
-import * as selectors from '../store/selectors';
-import * as actions from '../store/actions';
 
 import StyledPersonForm from "./styledComponents/PersonForm"
+import {useSelectors, useState} from "./State";
+import Person from "./Person";
+import {selectActivePerson} from "../store/selectors";
 
-class PersonForm extends React.Component {
-  render() {
-    const { person } = this.props;
+const PersonForm = () => {
+    const state = useState();
+    const { selectActivePerson } = useSelectors();
 
-    console.log('ACTIVE PERSON', person);
+    const person = selectActivePerson(state);
 
-    return <StyledPersonForm className="form">Form to edit person here</StyledPersonForm>;
-  }
+    if (!person) {
+        return (<StyledPersonForm>No person selected yet</StyledPersonForm>);
+    }
+
+    return (
+        <StyledPersonForm className="form">
+            <Person person={person} />
+        </StyledPersonForm>
+    );
 }
 
-export const mapStateToProps = state => {
-  return {
-    person: selectors.selectActivePerson(state),
-  };
-};
-
-export const mapDispatchToProps = dispatch => ({
-  save: data => dispatch(actions.savePerson(data)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PersonForm);
+export default PersonForm;

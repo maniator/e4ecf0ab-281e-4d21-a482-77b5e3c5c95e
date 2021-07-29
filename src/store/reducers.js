@@ -1,8 +1,8 @@
 import people from '../data/people.json';
 import * as types from './types';
 
-const initialState = {
-  people,
+export const initialState = {
+  people: new Map(people.map((person) => [person.id, person])),
   activeId: null,
   filterValue: 'ALL',
 };

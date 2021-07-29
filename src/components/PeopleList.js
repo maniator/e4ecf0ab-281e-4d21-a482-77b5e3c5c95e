@@ -1,40 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
-// (Optional) Select component
-import Select from 'react-select';
-
-import * as selectors from '../store/selectors';
-import * as actions from '../store/actions';
 
 import StyledPeopleList from "./styledComponents/PeopleList"
+import Person from "./Person";
+import {useSelectors, useState} from "./State";
 
 // Options for select
 const FRUITS = ['ALL', 'banana', 'strawberry', 'apple'];
 
-class PeopleList extends React.Component {
-  render() {
-    const { people } = this.props;
+const PeopleList = () => {
+  const state = useState();
+  const { selectFilteredPeople } = useSelectors();
 
-    console.log('PEOPLE', people);
+  const people = selectFilteredPeople(state);
 
-    return <StyledPeopleList className="list">Put filter + list of people here</StyledPeopleList>;
-  }
+  /*
+   TODO: not ideal to load thousands of dom elements at once
+    Should probably lazy-load them
+   */
+  return <StyledPeopleList className="list">
+    Put filter + list of people here
+    <ul>
+      {
+        people?.map(person => <Person person={person} key={person.id} />)
+      }
+    </ul>
+  </StyledPeopleList>;
 }
 
-export const mapStateToProps = state => {
-  return {
-    people: selectors.selectFilteredPeople(state),
-    activeId: selectors.selectActiveId(state),
-  };
-};
-
-export const mapDispatchToProps = dispatch => ({
-  filter: filterValue => dispatch(actions.filterPeople(filterValue)),
-  setActiveId: id => dispatch(actions.setActiveId(id)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PeopleList);
+export default PeopleList;
